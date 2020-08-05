@@ -5,13 +5,13 @@ import android.view.ViewGroup
 import androidx.databinding.DataBindingUtil
 import androidx.recyclerview.widget.RecyclerView
 import com.example.weatherlogger.R
-import com.example.weatherlogger.data.models.Weather
+import com.example.weatherlogger.data.db.entities.Temperature
 import com.example.weatherlogger.databinding.RowWeatherBinding
 
 
-class WeatherAdapter ( private val weathers: List<Weather>) : RecyclerView.Adapter<WeatherAdapter.WeatherViewHolder>(){
+class WeatherAdapter ( private val tempList: List<Temperature>) : RecyclerView.Adapter<WeatherAdapter.WeatherViewHolder>(){
 
-    override fun getItemCount() = weathers.size
+    override fun getItemCount() = tempList.size
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int) =
         WeatherViewHolder(
@@ -24,7 +24,7 @@ class WeatherAdapter ( private val weathers: List<Weather>) : RecyclerView.Adapt
         )
 
     override fun onBindViewHolder(holder: WeatherViewHolder, position: Int) {
-        holder.rowWeatherBinding.weather = weathers[position]
+        holder.rowWeatherBinding.temperature = tempList[position]
 
     }
 

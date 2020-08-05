@@ -3,9 +3,10 @@ package com.example.weatherlogger.ui.weather
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
+import com.example.weatherlogger.data.db.entities.Temperature
 import com.example.weatherlogger.util.Coroutines
-import com.example.weatherlogger.data.models.Weather
 import com.example.weatherlogger.data.repositories.WeatherRepository
+import com.example.weatherlogger.util.lazyDeferred
 import kotlinx.coroutines.Job
 
 class WeatherViewModel (
@@ -15,16 +16,18 @@ class WeatherViewModel (
     private lateinit var job: Job
     var weatherListener:WeatherListener?=null
 
-    private val _weathers = MutableLiveData<List<Weather>>()
-    val weathers: LiveData<List<Weather>>
-        get() = _weathers
+    suspend fun getTemp(
+        lat:Double,
+        lon:Double,
+        appid: String
+    ) = weatherRepository.getTemp(lat,lon,appid)
 
-    fun getWeatherList(lat:Double,lon:Double,appid:String) {
-        job = Coroutines.ioThenMain(
-            { weatherRepository.getWeatherList(lat,lon,appid) },
-            { _weathers.value = it?.weather}
-        )
+
+    val tempretures by lazyDeferred {
+        weatherRepository.getAllTemp()
     }
+
+    suspend fun saveTemp(temp: Temperature) = weatherRepository.saveTemp(temp)
 
     override fun onCleared() {
         super.onCleared()

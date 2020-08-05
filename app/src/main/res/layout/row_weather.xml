@@ -4,8 +4,8 @@
 
     <data>
 <variable
-    name="weather"
-    type="com.example.weatherlogger.data.models.Weather" />
+    name="temperature"
+    type="com.example.weatherlogger.data.db.entities.Temperature" />
     </data>
 
     <androidx.constraintlayout.widget.ConstraintLayout
@@ -19,24 +19,23 @@
             android:layout_height="wrap_content"
             android:layout_marginStart="@dimen/_8sdp"
             android:layout_marginTop="@dimen/_14sdp"
-            android:text="@{weather.main}"
+            android:text="@{`Temperature `+temperature.temp}"
             android:textColor="@color/colorBlack"
             android:textSize="@dimen/_13ssp"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent" />
 
 
-        <TextView
+        <!--<TextView
             android:id="@+id/tWeatherDesc"
             android:layout_width="@dimen/_190sdp"
             android:layout_height="wrap_content"
             android:layout_marginStart="@dimen/_8sdp"
             android:layout_marginTop="@dimen/_3sdp"
-            android:text="@{weather.description}"
             android:textSize="@dimen/_12ssp"
             android:textColor="@color/colorGrey06"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/tWeatherStatus" />
+            app:layout_constraintTop_toBottomOf="@+id/tWeatherStatus" />-->
 
 
         <View
