@@ -15,5 +15,10 @@ object Coroutines {
             callback(data)
         }
 
+    fun io(work: suspend (() -> Unit)) =
+        CoroutineScope(Dispatchers.IO).launch {
+            work()
+        }
+
 
 }

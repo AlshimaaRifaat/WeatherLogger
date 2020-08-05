@@ -11,9 +11,10 @@ data class Main(
     @SerializedName("pressure")
     var pressure: Int,
     @SerializedName("temp")
-    var temp: Double,
+    var temp: String,
     @SerializedName("temp_max")
     var tempMax: Double,
     @SerializedName("temp_min")
     var tempMin: Double
+
 )

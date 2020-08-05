@@ -1,6 +1,7 @@
 package com.example.weatherlogger.data.network
 
 import com.example.weatherlogger.data.models.WeatherResponse
+import okhttp3.OkHttpClient
 import retrofit2.Response
 import retrofit2.Retrofit
 import retrofit2.converter.gson.GsonConverterFactory
@@ -17,8 +18,13 @@ interface MyApi {
 
 
     companion object{
-        operator fun invoke() : MyApi {
+        operator fun invoke(networkConnectionInterceptor: NetworkConnectionInterceptor): MyApi{
+            val okkHttpclient = OkHttpClient.Builder()
+                .addInterceptor(networkConnectionInterceptor)
+                .build()
+
             return Retrofit.Builder()
+                .client(okkHttpclient)
                 .addConverterFactory(GsonConverterFactory.create())
                 .baseUrl("http://api.openweathermap.org/data/2.5/")
                 .build()

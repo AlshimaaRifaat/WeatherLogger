@@ -13,7 +13,7 @@ data class WeatherResponse(
     @SerializedName("coord")
     var coord: Coord,
     @SerializedName("dt")
-    var dt: Int,
+    var dt: String,
     @SerializedName("id")
     var id: Int,
     @SerializedName("main")

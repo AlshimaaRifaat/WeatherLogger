@@ -6,8 +6,8 @@ import androidx.databinding.DataBindingUtil
 import androidx.recyclerview.widget.RecyclerView
 import com.example.weatherlogger.R
 import com.example.weatherlogger.data.models.Weather
-
 import com.example.weatherlogger.databinding.RowWeatherBinding
+
 
 class WeatherAdapter ( private val weathers: List<Weather>) : RecyclerView.Adapter<WeatherAdapter.WeatherViewHolder>(){
 

@@ -20,6 +20,7 @@ import com.example.weatherlogger.util.toast
 import com.example.weatherlogger.R
 import com.example.weatherlogger.data.models.WeatherResponse
 import com.example.weatherlogger.data.network.MyApi
+import com.example.weatherlogger.data.network.NetworkConnectionInterceptor
 import com.example.weatherlogger.data.repositories.ApiException
 import com.example.weatherlogger.data.repositories.NoInternetException
 import com.example.weatherlogger.data.repositories.WeatherRepository
@@ -56,9 +57,10 @@ class WeatherFragment : Fragment() ,WeatherListener{
         getLastLocation()*/
         context?.toast("creat lat: "+locationLatitude)
         context?.toast("creat long: "+locationLongitude)
+        val networkConnectionInterceptor= NetworkConnectionInterceptor(requireContext())
+        val myApi= MyApi(networkConnectionInterceptor)
 
-        val api = MyApi()
-        val weatherRepository = WeatherRepository(api)
+        val weatherRepository = WeatherRepository(myApi)
 
         weatherViewModelFactory = WeatherViewModelFactory(weatherRepository)
         weatherViewModel = ViewModelProvider(this, weatherViewModelFactory).get(WeatherViewModel::class.java)
@@ -75,7 +77,7 @@ class WeatherFragment : Fragment() ,WeatherListener{
         progress_bar.show()
         try {
 
-            val weatherResponse =  weatherViewModel.getWeatherList(12.8,132.5,"2a2f572ded21654bb03e4880033fb54b")
+            val weatherResponse =  weatherViewModel.getWeatherList(12.85,112.5,"2a2f572ded21654bb03e4880033fb54b")
             // if(weatherResponse) {
            progress_bar.hide()
 
