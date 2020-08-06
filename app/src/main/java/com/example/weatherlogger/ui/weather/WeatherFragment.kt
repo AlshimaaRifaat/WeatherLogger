@@ -69,7 +69,7 @@ class WeatherFragment : Fragment(), WeatherListener {
             ViewModelProvider(this, weatherViewModelFactory).get(WeatherViewModel::class.java)
 
         weatherViewModel.weatherListener = this
-        btnSave.setOnClickListener { view ->
+        icSave.setOnClickListener { view ->
             lifecycleScope.launch {
                 weatherViewModel.saveTemp(
                     this@WeatherFragment
@@ -84,6 +84,7 @@ class WeatherFragment : Fragment(), WeatherListener {
 
     private fun getWeatherList() = Coroutines.main {
         progress_bar.show()
+
         weatherViewModel.tempretures.await().observe(viewLifecycleOwner, Observer { tempList ->
             progress_bar.hide()
             rvWeather.also {
@@ -106,8 +107,7 @@ class WeatherFragment : Fragment(), WeatherListener {
 
                         this.locationLatitude = location.latitude.toString()
                         this.locationLongitude = location.longitude.toString()
-                        context?.toast("lat: " + this.locationLongitude)
-                        context?.toast("long: " + this.locationLongitude)
+
                         getTemp()
                         getWeatherList()
                     }
@@ -123,15 +123,15 @@ class WeatherFragment : Fragment(), WeatherListener {
     private fun getTemp() {
         lifecycleScope.launch {
             try {
-                context?.toast("data " + locationLatitude!!.toString())
+
                 val responseData = weatherViewModel.getTemp(
                     locationLatitude!!.toDouble(),
                     locationLongitude!!.toDouble(), "2a2f572ded21654bb03e4880033fb54b"
                 )
                 onSuccess(responseData)
                 this@WeatherFragment.currentWeather = responseData
-                tTemp.text = responseData.temperature?.temp.toString()
-                tDate.text = responseData.dt.toString()
+                tTemp.text = "Temperature: "+responseData.temperature?.temp.toString()
+                tDate.text ="Date: "+ responseData.dt.toString()
             } catch (e: ApiException) {
                 e.printStackTrace()
                 onFailure(e.message.toString())
@@ -158,8 +158,7 @@ class WeatherFragment : Fragment(), WeatherListener {
             var lastLocation = p0?.lastLocation
             locationLatitude = lastLocation?.latitude.toString()
             locationLatitude = lastLocation?.longitude.toString()
-            context?.toast("last lat: " + locationLatitude)
-            context?.toast("last long: " + locationLongitude)
+
         }
     }
 

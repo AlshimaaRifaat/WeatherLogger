@@ -34,7 +34,7 @@ class WeatherRepository  (
 
     suspend fun getTemp(lat:Double, lon:Double, appid :String):WeatherResponse {
 
-        return apiRequest { api.getDataFirstly(lat, lon,appid) }
+        return apiRequest { api.getCurrentWeather(lat, lon,appid) }
     }
 
 }

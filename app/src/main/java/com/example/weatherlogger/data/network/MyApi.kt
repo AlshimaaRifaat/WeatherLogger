@@ -12,15 +12,9 @@ import retrofit2.http.Query
 
 interface MyApi {
     @GET("weather")
-    suspend fun getWeatherList(@Query("lat") lat: Double,
-                               @Query("lon") lon: Double,
-                               @Query("appid") appid: String ) : Response<WeatherResponse>
-
-
-    @GET("weather")
-    suspend fun getDataFirstly(@Query("lat") lat: Double,
-                               @Query("lon") lon: Double,
-                               @Query("appid") appid: String ) : Response<WeatherResponse>
+    suspend fun getCurrentWeather(@Query("lat") lat: Double,
+                                  @Query("lon") lon: Double,
+                                  @Query("appid") appid: String ) : Response<WeatherResponse>
     companion object{
         operator fun invoke(networkConnectionInterceptor: NetworkConnectionInterceptor): MyApi{
             val okkHttpclient = OkHttpClient.Builder()

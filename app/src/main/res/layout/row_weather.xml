@@ -10,16 +10,16 @@
 
     <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
-        android:layout_height="@dimen/_70sdp">
+        android:layout_height="@dimen/_50sdp">
 
 
         <TextView
-            android:id="@+id/tWeatherStatus"
+            android:id="@+id/tWeatherTemp"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginStart="@dimen/_8sdp"
             android:layout_marginTop="@dimen/_14sdp"
-            android:text="@{`Temperature `+temperature.temp}"
+            android:text="@{`Temperature: `+temperature.temp}"
             android:textColor="@color/colorBlack"
             android:textSize="@dimen/_13ssp"
             app:layout_constraintStart_toStartOf="parent"
@@ -41,7 +41,7 @@
         <View
             android:layout_width="match_parent"
             android:layout_height="@dimen/_1sdp"
-            android:background="@color/colorGrey02"
+            android:background="@color/colorGrey03"
             app:layout_constraintBottom_toBottomOf="parent" />
     </androidx.constraintlayout.widget.ConstraintLayout>
 </layout>
