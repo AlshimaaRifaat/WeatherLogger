@@ -6,7 +6,7 @@
 1. coroutines
 1. Room Database
 1. Navigation Component
-1. Higher order fuctions
+1. Higher order functions
 1. kotlin extentions
 1. Services Location
 1. Material design ,constraint layout,sdp && ssp libraries
