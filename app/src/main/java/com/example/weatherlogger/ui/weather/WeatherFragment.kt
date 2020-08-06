@@ -135,6 +135,7 @@ class WeatherFragment : Fragment(), WeatherListener {
             } catch (e: ApiException) {
                 e.printStackTrace()
                 onFailure(e.message.toString())
+
             } catch (e: NoInternetException) {
                 e.printStackTrace()
                 onFailure(e.message.toString())
